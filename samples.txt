@@ -1,0 +1,215 @@
+Queries
+
+## Query for all posts with comments
+
+query {
+  posts {
+    id
+    title
+		description
+    author
+    comment {
+      id
+      content
+      author
+    }
+  }
+}
+
+## Query for indivudal posts
+
+    query {
+    post(id:{post_id}) {
+        title
+        description
+        author
+    }
+    }
+
+    example :
+        query {
+        post(id:1) {
+            title
+            description
+            author
+        }
+        }
+
+
+# Mutations of POST
+
+## mutation for creating posts
+
+    mutation {
+    createPost (
+        title: "{title of the post}"
+        description: "{description of Post}"
+        author: "{Author of the post}"
+    ) {
+        post {
+        id
+        title
+        }
+    }
+    }
+
+    example:
+    
+        mutation {
+        createPost (
+            title: "Title 1"
+            description: "This is the description of the post Title 1"
+            author: "Author 1"
+        ) {
+            post {
+            id
+            title
+            }
+        }
+        }
+
+
+## mutation for updating posts
+
+    mutation {
+    updatePost (
+        id: {post_id},
+        title: "{Title_post}"
+        description: "{description of the post}"
+        author: "{Author of the post}"
+    ) {
+        post {
+        id
+        title
+        description
+        author
+        }
+    }
+    }
+
+    example:
+        mutation {
+        updatePost (
+            id: 1,
+            title: "Title Update 1"
+            description: "This is updated description of title1"
+            author: "Author 2"
+        ) {
+            post {
+            id
+            title
+            description
+            author
+            }
+        }
+        }
+
+## mutation for deleting post
+
+    mutation {
+    deletePost (
+        id:{post_id}
+    ) {
+        post {
+        id
+        }
+    }
+    }
+
+    example:
+
+        mutation {
+        deletePost (
+            id:1
+        ) {
+            post {
+            id
+            }
+        }
+        }    
+
+
+# Mutations for Comments
+
+## mutation for create comments
+
+    mutation {
+    createComment (
+        content: "{comment for the post}"
+        author: "{user}"
+        postId: {post_id}
+    ) {
+        comment {
+        content
+        author
+        id
+        }
+    }
+    }
+
+    example:
+
+        mutation {
+        createComment (
+            content: "This is the comment for the post 1 whos id is 1"
+            author: "Author 1"
+            postId: 1
+        ) {
+            comment {
+            content
+            author
+            id
+            }
+        }
+        }
+
+## mutation for updating comment
+
+    mutation {
+    updateComment (
+        id:{comment_id}
+        content: "{updated Comment}"
+    ) {
+        comment {
+        id
+        content
+        }
+    }
+    }
+
+    example:
+        mutation {
+        updateComment (
+            id:1
+            content: "Updated comment of the 1st comment"
+        ) {
+            comment {
+            id
+            content
+            }
+        }
+        }
+
+
+## mutation for delete Comment
+
+    mutation {
+    deleteComment (
+        id:{comment_id}
+    ) {
+        comment {
+        id
+        }
+    }
+    }
+
+    example:
+        mutation {
+        deleteComment (
+            id:1
+        ) {
+            comment {
+            id
+            }
+        }
+        }
